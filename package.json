@@ -1,0 +1,24 @@
+{
+  "name": "friendly-discordly-watcher",
+  "version": "1.0.0",
+  "description": "A Simple discord bot that forwards all Links from an Input Text Channel to an Output Text Channel. Mainly for learning purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pofay/friendly-discordly-watcher.git"
+  },
+  "keywords": [
+    "discord-bot",
+    "learning",
+    "NodeJS"
+  ],
+  "author": "Gian Carlo I. Gilos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pofay/friendly-discordly-watcher/issues"
+  },
+  "homepage": "https://github.com/Pofay/friendly-discordly-watcher#readme"
+}
