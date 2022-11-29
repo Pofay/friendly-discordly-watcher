@@ -1,4 +1,5 @@
 [![Banner](https://codecrafters.io/landing/images/byox-banner.gif?v=1)](https://codecrafters.io/github-banner)
+![][codecrafters-banner.png?raw=true]
 
 ## Building my own Discord Bot
 
@@ -7,4 +8,4 @@ This is part of my [build-your-own-x](https://github.com/codecrafters-io/build-y
 ## License
 
 [![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-[1]: https://github.com/codecrafters-io/build-your-own-x
+
