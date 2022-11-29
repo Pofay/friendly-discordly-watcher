@@ -4,7 +4,13 @@
   "description": "A Simple discord bot that forwards all Links from an Input Text Channel to an Output Text Channel. Mainly for learning purposes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "lint":"pretty-quick --staged && lint-staged",
+    "prepare": "husky install"
+  },
+  "hooks": {
+    "pre-commit": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -20,5 +26,27 @@
   "bugs": {
     "url": "https://github.com/Pofay/friendly-discordly-watcher/issues"
   },
-  "homepage": "https://github.com/Pofay/friendly-discordly-watcher#readme"
+  "homepage": "https://github.com/Pofay/friendly-discordly-watcher#readme",
+  "dependencies": {
+    "discord.js": "^14.7.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.8.0",
+    "pretty-quick": "^3.1.3",
+    "typescript": "^4.9.3"
+  },
+  "lint-staged": {
+    "*.{ts,js}": "eslint --cache --fix"
+  }
 }
