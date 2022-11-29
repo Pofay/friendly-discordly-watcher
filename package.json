@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/Pofay/friendly-discordly-watcher#readme",
   "dependencies": {
-    "discord.js": "^14.7.0"
+    "discord.js": "^14.7.0",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
