@@ -13,6 +13,7 @@
 	"rules": {
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/consistent-type-definitions": ["error", "type"],
-		"@typescript-eslint/strict-boolean-expressions": "warn"
+		"@typescript-eslint/strict-boolean-expressions": "warn",
+		"@typescript-eslint/explicit-function-return-type": "off"
 	}
 }
