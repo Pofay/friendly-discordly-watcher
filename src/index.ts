@@ -12,4 +12,3 @@ client.once(Events.ClientReady, c => {
 })
 
 client.login(TOKEN).catch(error => console.error(error))
-client.destroy()
