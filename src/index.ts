@@ -6,7 +6,6 @@ dotenv.config()
 
 const TOKEN = process.env.DISCORD_TOKEN ?? ''
 
-
 console.log('Bot is starting')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
