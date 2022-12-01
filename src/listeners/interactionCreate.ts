@@ -1,4 +1,4 @@
-import { Client, Interaction } from 'discord.js'
+import { BaseInteraction, Client, Interaction } from 'discord.js'
 
 export default (client: Client): void => {
 	client.on('interactionCreate', async (interaction: Interaction) => {
@@ -10,5 +10,5 @@ export default (client: Client): void => {
 
 const handleSlashCommand = async (
 	client: Client,
-	interaction: Interaction
+	interaction: BaseInteraction
 ) => {}
