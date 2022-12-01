@@ -1,11 +1,14 @@
 {
-  "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "outDir": "dist",
-    "sourceMap": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"],
-  "baseUrl": "src"
+	"compilerOptions": {
+		"target": "es2018",
+		"module": "commonjs",
+		"outDir": "dist",
+		"sourceMap": true,
+		"strict": true,
+		"importHelpers": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./src"
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules", "dist"]
 }
