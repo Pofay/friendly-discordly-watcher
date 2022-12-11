@@ -10,7 +10,7 @@ export const Hello: Command = {
 
 		await interaction.deferReply()
 
-		return await interaction.followUp({
+		await interaction.followUp({
 			ephemeral: true,
 			content,
 		})
