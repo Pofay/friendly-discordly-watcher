@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js'
 import * as dotenv from 'dotenv'
 import interactionCreate from 'listeners/interactionCreate'
+import onModalSubmit from 'listeners/onModalSubmit'
 import ready from 'listeners/ready'
 
 dotenv.config()
@@ -13,5 +14,6 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
 ready(client)
 interactionCreate(client)
+onModalSubmit(client)
 
 client.login(TOKEN).catch(error => console.error(error))
