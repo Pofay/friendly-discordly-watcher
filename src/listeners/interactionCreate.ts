@@ -13,13 +13,10 @@ const handleSlashCommand = async (
 	client: Client,
 	interaction: CommandInteraction
 ) => {
+	const slashCommand = Commands.find(c => c.name === interaction.commandName)
+	if (slashCommand == null) {
+		await interaction.followUp({ content: 'Cannot run command given' })
+	}
 
-    const slashCommand = Commands.find(c => c.name === interaction.commandName)
-    if(slashCommand == null) {
-        await interaction.followUp({ content: 'Cannot run command given'})
-    }
-
-    await interaction.deferReply();
-
-    await slashCommand?.run(client, interaction)
+	await slashCommand?.run(client, interaction)
 }

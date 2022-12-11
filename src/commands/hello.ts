@@ -1,17 +1,18 @@
-import { Client, CommandInteraction } from "discord.js";
-import { Command } from "./Command";
+import { Client, CommandInteraction } from 'discord.js'
+import { Command } from './Command'
 
+export const Hello: Command = {
+	name: 'hello',
+	description: 'Returns a Greeting',
+	type: 1,
+	run: async (client: Client, interaction: CommandInteraction) => {
+		const content = 'Testing Commands'
 
-export const Hello: Command ={
-    name: 'hello',
-    description: 'Returns a Greeting',
-    type: 1,
-    run: async (client: Client, interaction: CommandInteraction)  => {
-        const content = 'Testing Commands'
+		await interaction.deferReply()
 
-        return await interaction.followUp({
-            ephemeral: true,
-            content
-        })
-    }
+		return await interaction.followUp({
+			ephemeral: true,
+			content,
+		})
+	},
 }
