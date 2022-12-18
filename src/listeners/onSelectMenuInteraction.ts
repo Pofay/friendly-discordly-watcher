@@ -1,20 +1,25 @@
+import { AppState } from 'AppState'
 import { Client, Events, Interaction } from 'discord.js'
 
 export default (client: Client): void => {
 	client.on(Events.InteractionCreate, async (interaction: Interaction) => {
 		if (!interaction.isStringSelectMenu()) return await Promise.resolve()
 
-		// Invariants :
-		// - Source should not be equal to destination
-		if (interaction.customId === 'sourceChannelSelection') {
-			const sourceChannel = interaction.values[0]
-			await interaction.reply({
-				content: `Selected source Channel ${sourceChannel}`,
+		if (interaction.customId === 'channels-selection') {
+			const channelsSelection = interaction.values
+			const serverId = interaction.guildId
+
+			// @ts-expect-error
+			AppState.set(serverId, {
+				sourceChannel: channelsSelection[0],
+				destinationChannel: channelsSelection[1],
 			})
-		} else if (interaction.customId === 'destinationChannelSelection') {
-			const destinationChannel = interaction.values[0]
+
+			console.table(AppState)
+
 			await interaction.reply({
-				content: `Selected destination Channel ${destinationChannel}`,
+				ephemeral: true,
+				content: `Selected channels: \nSource: ${channelsSelection[0]} Destination: ${channelsSelection[1]}`,
 			})
 		}
 	})

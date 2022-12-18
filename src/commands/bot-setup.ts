@@ -23,25 +23,20 @@ export const BotSetup: Command = {
 			value: c.id,
 		}))
 
-		const sourceChannelSelectionRow =
+		const channelsSelection =
 			new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
 				new StringSelectMenuBuilder()
-					.setCustomId('sourceChannelSelection')
-					.setPlaceholder('Select Source Channel')
-					.addOptions(availableOptions)
-			)
-
-		const destinationChannelSelectionRow =
-			new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
-				new StringSelectMenuBuilder()
-					.setCustomId('destinationChannelSelection')
-					.setPlaceholder('Select Destination Channel')
+					.setCustomId('channels-selection')
+					.setPlaceholder('Select Source and Destination Channel')
+					.setMinValues(2)
+					.setMaxValues(2)
 					.addOptions(availableOptions)
 			)
 
 		await interaction.reply({
+			ephemeral: true,
 			content,
-			components: [sourceChannelSelectionRow, destinationChannelSelectionRow],
+			components: [channelsSelection],
 		})
 	},
 }
