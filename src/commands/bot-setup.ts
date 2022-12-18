@@ -18,9 +18,7 @@ export const BotSetup: Command = {
 			c => c.type === 0
 		)
 
-		const channels = textChannels.map(c => ({ id: c.id, name: c.name }))
-
-		const availableOptions = channels.map(c => ({
+		const availableOptions = textChannels.map(c => ({
 			label: c.name,
 			value: c.id,
 		}))
