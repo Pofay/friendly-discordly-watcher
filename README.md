@@ -2,7 +2,8 @@
 
 ## Building my own Discord Bot
 
-This is part of my [build-your-own-x](https://github.com/codecrafters-io/build-your-own-x) weekly warmup and I've chosen to build a Discord bot based of this guide [**Node.js**: _Create a Discord bot_](https://discordjs.guide/) 
+This is part of my [build-your-own-x](https://github.com/codecrafters-io/build-your-own-x) weekly warmup and I've chosen to build a Discord bot based of this guide [**Node.js**: _Create a Discord bot_](https://discordjs.guide/)
+
 ## Progress
 
 I've gotten a walking skeleton now XD.
@@ -15,9 +16,19 @@ Namely:
 - Lack of Typescript familiarity (I assumed that I could wing it with my JS experience.)
 - Lack of ESLint, Prettier and Husky Integration (I scoured through multiple sources just to get an environment that feels good enough to make this project which are listed below in the articles)
 
-
 ## Articles I've read to fix the environment issues
 
 - [MODULE_NOT_FOUND when ts-node uses absolute imports](https://stackoverflow.com/questions/72600316/ts-node-module-not-found-when-using-absolute-imports-in-typescript)
 - [How to use Typescript for Discord bots](https://sabe.io/tutorials/how-to-build-discord-bot-typescript)
 - [Use Absolute imports in Typescript](https://khalilstemmler.com/blogs/typescript/absolute-file-path/)
+
+## Gotchas that I've came across:
+
+Missing Permissions and Intents are what caused friction when making this bot. I've encountered the following:
+
+- Listening on `messageCreate` events. In order to enable this the client bot needs to have `GatewayIntentBits.GuildMessages` as part of its intents as well as permission to read messages from the Oauth 2 URL generator. [Source](https://stackoverflow.com/questions/66276582/discord-js-on-message-command-not-working)
+- Replying on `messageCreate` events. To make this work `GatewayIntentBits` for `GuildMessageTyping` and `MessageContent` need to be passed in intents. You also have to enable `Rich Presence for Message Content` to prevent `message.content` from being null. [Source](https://stackoverflow.com/questions/73036854/message-content-doesnt-have-any-value-in-discord-js)
+
+## Additional Learning
+
+- Just found out that there is a `collector` object that listens for messages for a specified time. [Source](https://stackoverflow.com/questions/67760538/how-to-make-your-bot-to-listen-to-your-messages-after-you-entered-a-command)
