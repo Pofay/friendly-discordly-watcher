@@ -6,6 +6,7 @@ import {
 	TextChannel,
 	ThreadChannel,
 } from 'discord.js'
+import { format } from 'date-fns'
 import { Command } from './Command'
 
 export const ForwardLinks: Command = {
@@ -43,8 +44,10 @@ export const ForwardLinks: Command = {
 						)
 						.first()
 
+				const date = new Date()
+
 				const thread: ThreadChannel = await destinationChannel.threads.create({
-					name: new Date().toISOString(),
+					name: format(date, 'yyyy-MM-dd E hh-mm-ss b'),
 					autoArchiveDuration: 60,
 					reason: `User ${interaction.user.username} has requested to forward links to a separate thread`,
 				})
