@@ -28,6 +28,7 @@ Missing Permissions and Intents are what caused friction when making this bot. I
 
 - Listening on `messageCreate` events. In order to enable this the client bot needs to have `GatewayIntentBits.GuildMessages` as part of its intents as well as permission to read messages from the Oauth 2 URL generator. [Source](https://stackoverflow.com/questions/66276582/discord-js-on-message-command-not-working)
 - Replying on `messageCreate` events. To make this work `GatewayIntentBits` for `GuildMessageTyping` and `MessageContent` need to be passed in intents. You also have to enable `Rich Presence for Message Content` to prevent `message.content` from being null. [Source](https://stackoverflow.com/questions/73036854/message-content-doesnt-have-any-value-in-discord-js)
+- As of what I've tried you can't send messages to threads directly. You have to use a Webhook as described in this [setup](https://discordjs.guide/popular-topics/webhooks.html#editing-webhooks) and giving the bot permission to `Manage Webhooks` in the Discord Developer Portal.
 
 ## Additional Learning
 
