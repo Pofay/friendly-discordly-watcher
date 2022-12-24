@@ -1,5 +1,11 @@
 import { AppState } from 'AppState'
-import { Client, CommandInteraction, Message } from 'discord.js'
+import {
+	Client,
+	CommandInteraction,
+	Message,
+	TextChannel,
+	ThreadChannel,
+} from 'discord.js'
 import { Command } from './Command'
 
 export const ForwardLinks: Command = {
@@ -27,26 +33,58 @@ export const ForwardLinks: Command = {
 					content: `Now forwarding links from this channel to destination channel.`,
 				})
 
-				// filter checks if the response is from the author who typed the command
-				const filter = (m: Message) => m.author.id === interaction.user.id
+				// Create a Thread in Destination Channel with title of `${currentDate.ISOString()}`
+				// @ts-expect-error
+				const destinationChannel: TextChannel =
+					// @ts-expect-error
+					await interaction.guild.channels.cache
+						.filter(
+							c => c.type === 0 && c.id === serverSettings.destinationChannel
+						)
+						.first()
 
-				// set up a message collector to check if there are any responses
+				const thread: ThreadChannel = await destinationChannel.threads.create({
+					name: new Date().toISOString(),
+					autoArchiveDuration: 60,
+					reason: `User ${interaction.user.username} has requested to forward links to a separate thread`,
+				})
+
+				// Should check if webhook is null
+				// Webhook setup can be done inside bot-setup
+				const channelWebhooks = await destinationChannel.fetchWebhooks()
+				const botWebhook = channelWebhooks.first()
+				if (botWebhook === undefined) {
+					await interaction.followUp({
+						ephemeral: true,
+						content: `Please set a webhook on the destination channel: ${destinationChannel.name}`,
+					})
+					return
+				}
+
+				const filter = (m: Message) => m.author.id === interaction.user.id
 				// @ts-expect-error
 				const collector = interaction.channel.createMessageCollector({
-					// set up the max wait time the collector runs (optional)
 					filter,
 					time: 60000,
 				})
 
-				// fires when a response is collected
 				collector.on('collect', async (msg: Message) => {
-					console.log(msg.content)
+					console.log('Collecting Messages')
+					if (msg.content.includes('https://')) {
+						await botWebhook.send({
+							threadId: thread.id,
+							content: msg.content,
+						})
+					}
 				})
 
-				// fires when the collector is finished collecting
 				collector.on('end', async (collected, reason) => {
-					// only send a message when the "end" event fires because of timeout
-					console.log('Passed a minute.')
+					console.log('Stop Collecting Messages')
+					await thread.setArchived(true)
+					await interaction.followUp({
+						ephemeral: true,
+						content: 'Stopped listening for links at this time.',
+					})
 				})
 			}
 		}
