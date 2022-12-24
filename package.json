@@ -29,6 +29,7 @@
 	},
 	"homepage": "https://github.com/Pofay/friendly-discordly-watcher#readme",
 	"dependencies": {
+		"date-fns": "^2.29.3",
 		"discord.js": "^14.7.0",
 		"dotenv": "^16.0.3"
 	},
