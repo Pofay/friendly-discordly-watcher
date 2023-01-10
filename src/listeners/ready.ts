@@ -1,4 +1,4 @@
-import { Commands } from "commands/Command";
+// import { Commands } from "commands/Command";
 import { Client } from "discord.js"
 
 
@@ -8,7 +8,7 @@ export default (client: Client): void => {
             return;
         }
 
-        await client.application.commands.set(Commands)
+        // await client.application.commands.set(Commands)
 
         console.log(`${client.user.username} is now online`);
     })
