@@ -29,9 +29,14 @@ export async function execute(interaction: CommandInteraction) {
 		return
 	}
 
-	const filter = (m: Message) => m.author.id === interaction.user.id
+	await interaction.reply({
+		ephemeral: true,
+		content: 'Now Forwarding given links to specified channel.',
+	})
 
-	const collector = (channel as TextChannel).createMessageCollector({
+	const filter = (m: Message) => m.author.id === interaction.user.id
+	// @ts-expect-error
+	const collector = interaction.channel.createMessageCollector({
 		filter,
 		time: 60000,
 	})
@@ -40,11 +45,11 @@ export async function execute(interaction: CommandInteraction) {
 		if (!isValidHttpUrl(msg.content)) {
 			await interaction.followUp({
 				ephemeral: true,
-				content:
-					'Can only forward valid URLs e.g http://google.com or https://yahoo.com.',
+				content: 'Can only forward valid URLs that contain http:// or https://',
 			})
+		} else {
+			await (channel as TextChannel).send(msg.content)
 		}
-		await (channel as TextChannel).send(msg.content)
 	})
 
 	collector.on('end', async (collected, reason) => {
