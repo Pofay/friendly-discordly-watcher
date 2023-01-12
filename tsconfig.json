@@ -6,8 +6,12 @@
 		"sourceMap": true,
 		"strict": true,
 		"importHelpers": true,
+		"moduleResolution": "Node",
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": "./src",
+		"paths": {
+			"*": ["*"]
+		}
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules", "dist"],
