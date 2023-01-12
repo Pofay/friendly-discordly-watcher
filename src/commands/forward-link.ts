@@ -13,6 +13,7 @@ export const data = new SlashCommandBuilder()
 		option
 			.setName('channel')
 			.setDescription('The channel to forward the link to.')
+			.addChannelTypes(ChannelType.GuildText)
 			.setRequired(true)
 	)
 	.addStringOption(option =>
@@ -30,13 +31,6 @@ export async function execute(interaction: CommandInteraction) {
 
 	if (channel === null || message === null) {
 		return
-	}
-
-	if (channel.type !== ChannelType.GuildText) {
-		await interaction.reply({
-			ephemeral: true,
-			content: 'The channel selected should be a Text Channel.',
-		})
 	}
 
 	if (!isValidHttpUrl(message)) {
