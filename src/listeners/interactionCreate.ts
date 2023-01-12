@@ -9,12 +9,21 @@ export default (client: Client): void => {
 	})
 }
 
-const commands = Object(commandModules)
+// const commands = Object(commandModules)
 
 const handleSlashCommand = async (
 	client: Client,
 	interaction: CommandInteraction
 ) => {
 	const { commandName } = interaction
-	commands[commandName].execute(interaction)
+	if (commandName === 'forward-link') {
+		await commandModules.forwardLink.execute(interaction)
+	} else if (commandName === 'forward-links') {
+		await commandModules.forwardLinks.execute(interaction)
+	} else {
+		await interaction.reply({
+			ephemeral: true,
+			content: 'Cannot execute command given.',
+		})
+	}
 }
