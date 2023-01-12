@@ -36,10 +36,14 @@ export async function execute(interaction: CommandInteraction) {
 	if (!isValidHttpUrl(message)) {
 		await interaction.reply({
 			ephemeral: true,
-			content:
-				'Can only forward valid URLs e.g http://google.com or https://yahoo.com.',
+			content: 'Can only forward valid URLs that contain http:// or https://',
 		})
+		return
 	}
 
 	await (channel as TextChannel).send(message)
+	await interaction.reply({
+		ephemeral: true,
+		content: `Forwarded Link to specified channel ${channel.name}`,
+	})
 }
