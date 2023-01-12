@@ -4,6 +4,7 @@ import {
 	SlashCommandBuilder,
 	TextChannel,
 } from 'discord.js'
+import { isValidHttpUrl } from 'utils/url-verifier'
 
 export const data = new SlashCommandBuilder()
 	.setName('forward-link')
@@ -41,19 +42,10 @@ export async function execute(interaction: CommandInteraction) {
 	if (!isValidHttpUrl(message)) {
 		await interaction.reply({
 			ephemeral: true,
-			content: 'Can only forward valid URLs e.g http://google.com or https://yahoo.com.'
+			content:
+				'Can only forward valid URLs e.g http://google.com or https://yahoo.com.',
 		})
 	}
 
 	await (channel as TextChannel).send(message)
-}
-
-const isValidHttpUrl = (link: string) => {
-	let url
-	try {
-		url = new URL(link)
-	} catch (_) {
-		return false
-	}
-	return url.protocol === 'http:' || url.protocol === 'https:'
 }
