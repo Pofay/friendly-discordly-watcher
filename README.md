@@ -15,7 +15,7 @@ Namely:
 - Using a different environment than what was written in the [discord.js guide](https://discordjs.guide/creating-your-bot/) since I used Typescript instead of plain JavaScript for this project.
 - Lack of Typescript familiarity (I assumed that I could wing it with my JS experience.)
 - Lack of ESLint, Prettier and Husky Integration (I scoured through multiple sources just to get an environment that feels good enough to make this project which are listed below in the articles)
-- Also encountered an issue with NodeJS imports resolution due to configuring my `tsconfig` to use a `baseUrl` to ditch relative imports. I expected the it to revert back to relative imports after transpilation. Turns out you need a path remapper for it.
+- How Node and Typescript will have import issues. Due to configuring my `tsconfig` to use a `baseUrl` to ditch relative imports I expected that it would revert back to relative imports after transpilation. Turns out you need a path remapper for it.
 
 ## Articles I've read to fix the environment issues
 
