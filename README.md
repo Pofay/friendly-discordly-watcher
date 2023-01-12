@@ -6,7 +6,7 @@ This is part of my [build-your-own-x](https://github.com/codecrafters-io/build-y
 
 ## Progress
 
-I've gotten a walking skeleton now XD.
+I plan on deploying the bot to fly.io. 
 
 I've also found a lot of my weaknesses from starting this project
 
@@ -24,12 +24,14 @@ Namely:
 - [Use Absolute imports in Typescript](https://khalilstemmler.com/blogs/typescript/absolute-file-path/)
 - [Configuring Path Aliases](https://betterprogramming.pub/how-to-configure-path-aliases-with-typescript-8586dc0aa214)
 
-## Gotchas that I've came across:
+## Discord and DiscordJS issues:
 
-Missing Permissions and Intents are what caused friction when making this bot. I've encountered the following:
+Missing Permissions and Intents are what caused friction when developing the bot. I've encountered the following:
 
-- Listening on `messageCreate` events. In order to enable this the client bot needs to have `GatewayIntentBits.GuildMessages` as part of its intents as well as permission to read messages from the Oauth 2 URL generator. [Source](https://stackoverflow.com/questions/66276582/discord-js-on-message-command-not-working)
-- Replying on `messageCreate` events. To make this work `GatewayIntentBits` for `GuildMessageTyping` and `MessageContent` need to be passed in intents. You also have to enable `Rich Presence for Message Content` to prevent `message.content` from being null. [Source](https://stackoverflow.com/questions/73036854/message-content-doesnt-have-any-value-in-discord-js)
+- Listening on `messageCreate` events. In order to enable this the client bot needs to have `GatewayIntentBits.GuildMessages` intent as well as permission to read messages from the Oauth 2 URL generator. [Source](https://stackoverflow.com/questions/66276582/discord-js-on-message-command-not-working)
+
+- Replying on `messageCreate` events. To make this work two intent bits are required, namely `GuildMessageTyping` and `MessageContent`. You also have to enable `Rich Presence for Message Content` to prevent `message.content` from being null. [Source](https://stackoverflow.com/questions/73036854/message-content-doesnt-have-any-value-in-discord-js)
+
 - As of what I've tried you can't send messages to threads directly. You have to use a Webhook as described in this [setup](https://discordjs.guide/popular-topics/webhooks.html#editing-webhooks) and giving the bot permission to `Manage Webhooks` in the Discord Developer Portal.
 
 ## Additional Learning
